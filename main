@@ -1,27 +1,49 @@
-map = [" ", " ", " ",
-       " ", " ", " ",
-       " ", " ", " ",]
-a = -1
+board = ['  '] * 9
+possible_cases = {}
+pc = None
+player = None
+
+def player_choice():
+    global player, pc
+    player = input("Виберіть 'x' або 'o': ").upper()
+    if player == 'O':
+        pc = 'X'
+    else:
+        pc = 'O'
+        player = 'X'
+    
+            
+    
+def print_board():
+    print("[", board[0], "]", "[", board[1], "]", "[", board[2], "]")
+    print("[", board[3], "]", "[", board[4], "]", "[", board[5], "]")
+    print("[", board[6], "]", "[", board[7], "]", "[", board[8], "]\n")
+
+    print("Positions:")
+    print("[ 1 ] [ 2 ] [ 3 ]")
+    print("[ 4 ] [ 5 ] [ 6 ]")
+    print("[ 7 ] [ 8 ] [ 9 ]")
+    
 def main():
-    if a < 9:
-        print("[", map[0], "]", "[", map[1], "]", "[", map[2], "]")
-        print("[", map[3], "]", "[", map[4], "]", "[", map[5], "]")
-        print("[", map[6], "]", "[", map[7], "]", "[", map[8], "]\n")
+    print_board()
+    try:
+        a = int(input("Введіть номер клітинки (1-9): "))
+        if 1 <= a <= 9:
+            if board[a-1] == ' ':
+                board[a-1] = player
+            else:
+                print("Ця клітинка вже зайнята!")
+        else:
+            print("Введіть число від 1 до 9.")
+    except ValueError:
+        print("Будь ласка, введіть правильне число.")
+    
+    
+    for i in range(len(board)):
+        if board[a-1] == ' ':
+            possible_cases[a-1] = pc
+             
 
-        print("\n[", "1", "]", "[", "2", "]", "[", "3", "]")
-        print("[", "4", "]", "[", "5", "]", "[", "6", "]")
-        print("[", "7", "]", "[", "8", "]", "[", "9", "]")
-    
-        for i in range(len(map)):
-            map[a-1] = "x"
-    
-    
-    a = int(input())
-    
-   
-    
-
-
-
+player_choice()
 while True:
     main()
